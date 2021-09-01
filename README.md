@@ -1,3 +1,4 @@
+![develop branch CI workflow](https://github.com/viktrols/yamdb_final/actions/workflows/yamdb_workflow.yaml/badge.svg)
 # REST API для сервиса YaMDb — базы отзывов
 Проект YaMDb собирает отзывы пользователей на произведения. Произведения делятся на категории (книги, фильмы и тд) Произведению может быть присвоен жанр из списка предустановленных (сказка, драма, артхаус и тд)
 
