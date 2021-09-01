@@ -23,10 +23,10 @@ jobs:
         python -m flake8
         cd infra_project/
         python manage.py test
-  
-  - name: Telegram notification
-    uses: appleboy/telegram-action@master
-    with:
-      to: ${{ secrets.TG_CHAT_ID }}
-      token: ${{ secrets.TELEGRAM_TOKEN }}
-      args: AHUENNO!
+  notification:
+   - name: Telegram notification
+     uses: appleboy/telegram-action@master
+     with:
+       to: ${{ secrets.TG_CHAT_ID }}
+       token: ${{ secrets.TELEGRAM_TOKEN }}
+       args: AHUENNO!
