@@ -23,12 +23,12 @@ jobs:
         python -m flake8
         cd infra_project/
         python manage.py test
-  telegram_notification:
+  send_message:
     runs-on: ubuntu-latest
     steps:
-      - name: Telegram notification
+    - name: Telegram notification
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.TG_CHAT_ID }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        args: AHUENNO!
+        message: ${{ github.workflow }} выполнен!Заебись!
