@@ -1,4 +1,4 @@
-![master workflow](https://github.com/Viktrols/yamdb_final/workflows/yamdb_workflow.yaml/badge.svg)
+![yamdb_workflow](https://github.com/Viktrols/yamdb_final/actions/workflows/main.yml/badge.svg?branch=master)
 # REST API для сервиса YaMDb — базы отзывов
 Проект YaMDb собирает отзывы пользователей на произведения. Произведения делятся на категории (книги, фильмы и тд) Произведению может быть присвоен жанр из списка предустановленных (сказка, драма, артхаус и тд)
 
