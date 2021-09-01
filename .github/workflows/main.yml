@@ -21,10 +21,10 @@ jobs:
     - name: Test with flake8 and django tests
       run: |
         python -m flake8
-        cd infra_project/
         python manage.py test
   send_message:
     runs-on: ubuntu-latest
+    needs: tests
     steps:
     - name: Telegram notification
       uses: appleboy/telegram-action@master
