@@ -1,8 +1,7 @@
-FROM python:3.9-alpine
+FROM python:3.9
 
 WORKDIR /code
 COPY requirements.txt .
-RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev
 RUN python3 -m pip install --upgrade pip \
     && pip3 install -r /code/requirements.txt --no-cache-dir
 COPY . .
