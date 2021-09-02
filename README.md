@@ -6,57 +6,80 @@
 Сами произведения в YaMDb не хранятся, здесь нельзя посмотреть фильм или послушать музыку.
 
 Пользователи оставляют к произведениям текстовые отзывы и выставляют произведению рейтинг (оценку в диапазоне от одного до десяти). Из множества оценок автоматически высчитывается средняя оценка произведения. К каждому отзыву можно оставить комментарий.
+
+## Workflow состоит из четырёх шагов:
+- Тестирование проекта.
+- Сборка и публикация образа на DockerHub.
+- Автоматический деплой на удаленный сервер.
+- Отправка уведомления в телеграм-чат.
+
 ## Подготовка и запуск проекта
-### Создать .env и заполнить переменные окружения:
+### Склонируйте репозиторий на локальную машину:
+```shell
+git clone https://github.com/Viktrols/yamdb_final
 ```
-SECRET_KEY=<секретный ключ проекта django>
+### Выполните вход на свой удаленный сервер
 
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_HOST_USER=<почтовый адрес или имя пользователя>
-EMAIL_HOST_PASSWORD=<пароль>
-DEFAULT_FROM_EMAIL=<почтовый адрес>
+### Установите docker на сервер:
+```
+sudo apt install docker.io 
+```
+### Установите docker-compose на сервер:
+```
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
+### Примените разрешения для исполняемого файла к двоичному файлу:
+```
+sudo chmod +x /usr/local/bin/docker-compose
+```
+### Скопируйте файлы docker-compose.yaml и nginx/default.conf из проекта на сервер:
+```
+scp docker-compose.yaml <username>@<host>/home/<username>/docker-compose.yaml
+scp default.conf <username>@<host>/home/<username>/nginx/default.conf
 
+```
+### Добавьте в Secrets GitHub переменные окружения для работы:
+```
+SECRET_KEY=<secret key django проекта>
 DB_ENGINE=django.db.backends.postgresql
-DB_NAME=<имя базы данных postgres>
-DB_USER=<имя пользователя>
-DB_PASSWORD=<пароль>
 DB_HOST=db
+DB_NAME=postgres
+DB_PASSWORD=postgres
 DB_PORT=5432
+DB_USER=postgres
 
-```
-### Создать файл pg.env и заполнить переменные окружения для работы с Postgres:
-```
-DB_ENGINE=django.db.backends.postgresql
-DB_NAME=<имя базы данных postgres>
-DPOSTGRES_USER=<имя пользователя>
-POSTGRES_PASSWORD=<пароль>
-DB_HOST=db
-DB_PORT=5432
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
 
+DOCKER_PASSWORD=<Docker password>
+DOCKER_USERNAME=<Docker username>
+
+USER=<username для подключения к серверу>
+HOST=<IP сервера>
+PASSPHRASE=<пароль для сервера, если он установлен>
+SSH_KEY=<ваш SSH ключ>
+TG_CHAT_ID=<ID чата, в который придет сообщение>
+TELEGRAM_TOKEN=<токен вашего бота>
 ```
-### Собрать docker-compose:
-```
-docker-compose up -d --build
-```
-### Собрать статические файлы в STATIC_ROOT:
+### После успешного деплоя зайдите на боевой сервер и выполните команды (только после первого деплоя):
+#### Собрать статические файлы в STATIC_ROOT:
 ```
 docker-compose exec web python3 manage.py collectstatic --noinput
 ```
-### Применить миграции:
+#### Применить миграции:
 ```
 docker-compose exec web python3 manage.py migrate --noinput
 ```
-### Заполнить базу данных:
+#### Заполнить базу данных:
 ```
 docker-compose exec web python3 manage.py loaddata fixtures.json
 ```
-### Создать суперпользователя Django:
+#### Создать суперпользователя Django:
 ```
 docker-compose exec web python manage.py createsuperuser
 ```
-### Проект будет доступен по адресу http://127.0.0.1
-### Документация API http://127.0.0.1/redoc
+### Для ревью проект доступен по адресу http://84.252.139.162/api/v1/
+### Документация API http://84.252.139.162/redoc/
 ### Образ на DockerHub https://hub.docker.com/repository/docker/viktrols/yamdb
 
 
