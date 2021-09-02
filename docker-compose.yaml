@@ -11,7 +11,7 @@ services:
       - ./pg.env
 
   web:
-    build: .
+    image: viktrols/yamdb:latest
     restart: always
     command: gunicorn api_yamdb.wsgi:application --bind 0.0.0.0:8000
     volumes:
