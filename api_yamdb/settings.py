@@ -18,7 +18,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', default='p&l%385148kslhtyn^##a1)ilz@4zqj=rq
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['130.193.40.196', 'viktrols.co.vu', '*']
+ALLOWED_HOSTS = ['130.193.40.196', 'localhost', 'viktrols.co.vu', '*']
 
 INSTALLED_APPS = [
 
@@ -127,4 +127,3 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'user.User'
-
