@@ -1,8 +1,12 @@
 name: yamdb_workflow
 
-on: push
-  paths-ignore:
-    - '**/README.md'
+on: 
+  push:
+    branches:
+    - master # это нужно для тестов!
+    - "**"
+    paths-ignore:
+      - '**/README.md'
 
 jobs:
   tests:
