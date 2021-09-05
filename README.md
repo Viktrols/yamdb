@@ -8,14 +8,14 @@
 Пользователи оставляют к произведениям текстовые отзывы и выставляют произведению рейтинг (оценку в диапазоне от одного до десяти). Из множества оценок автоматически высчитывается средняя оценка произведения. К каждому отзыву можно оставить комментарий.
 
 ## Workflow состоит из четырёх шагов:
-- Тестирование проекта.
+- Тестирование проекта (flake8 и pytest).
 - Сборка и публикация образа на DockerHub.
 - Автоматический деплой на удаленный сервер.
 - Отправка уведомления в телеграм-чат.
 
 ## Подготовка и запуск проекта
 ### Склонируйте репозиторий на локальную машину:
-```shell
+```
 git clone https://github.com/Viktrols/yamdb_final
 ```
 ### Выполните вход на свой удаленный сервер
@@ -38,6 +38,13 @@ scp docker-compose.yaml <username>@<host>/home/<username>/docker-compose.yaml
 scp default.conf <username>@<host>/home/<username>/nginx/default.conf
 
 ```
+### Создайте на сервере файл pg.env для работы с контейнером postgres и поместите в него значения переменных окружения (или создайте этот файл локально и скопируйте файл по аналогии с предыдущим пунктом):
+```
+POSTGRES_PASSWORD=<пароль для базы данных> - обязательный параметр
+DB_NAME=<название базы данных> - необязательный параметр (по умолчанию будет postgres)
+POSTGRES_USER=<имя пользователя> - необязательный параметр (по умолчанию будет postgres)
+
+```
 ### Добавьте в Secrets GitHub переменные окружения для работы:
 ```
 SECRET_KEY=<secret key django проекта>
@@ -47,9 +54,6 @@ DB_NAME=postgres
 DB_PASSWORD=postgres
 DB_PORT=5432
 DB_USER=postgres
-
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
 
 DOCKER_PASSWORD=<Docker password>
 DOCKER_USERNAME=<Docker username>
@@ -82,5 +86,3 @@ docker-compose exec web python manage.py createsuperuser
 ### Для ревью проект доступен по адресу http://84.252.139.162/api/v1/
 ### Документация API http://84.252.139.162/redoc/
 ### Образ на DockerHub https://hub.docker.com/repository/docker/viktrols/yamdb
-
-
