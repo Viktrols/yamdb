@@ -36,14 +36,12 @@ sudo chmod +x /usr/local/bin/docker-compose
 ```
 scp docker-compose.yaml <username>@<host>/home/<username>/docker-compose.yaml
 scp default.conf <username>@<host>/home/<username>/nginx/default.conf
-
 ```
 ### Создайте на сервере файл pg.env для работы с контейнером postgres и поместите в него значения переменных окружения (или создайте этот файл локально и скопируйте файл по аналогии с предыдущим пунктом):
 ```
 POSTGRES_PASSWORD=<пароль для базы данных> - обязательный параметр
 DB_NAME=<название базы данных> - необязательный параметр (по умолчанию будет postgres)
 POSTGRES_USER=<имя пользователя> - необязательный параметр (по умолчанию будет postgres)
-
 ```
 ### Добавьте в Secrets GitHub переменные окружения для работы:
 ```
