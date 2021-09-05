@@ -1,9 +1,8 @@
 name: yamdb_workflow
 
-on: 
-  push:
-    paths-ignore:
-      - '**/README.md'
+on: push
+  paths-ignore:
+    - '**/README.md'
 
 jobs:
   tests:
