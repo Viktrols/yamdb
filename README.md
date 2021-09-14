@@ -32,6 +32,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 ```
 sudo chmod +x /usr/local/bin/docker-compose
 ```
+### Отредактируйте файл nginx/default.conf и в строке server_name впишите свой IP
 ### Скопируйте файлы docker-compose.yaml и nginx/default.conf из проекта на сервер:
 ```
 scp docker-compose.yaml <username>@<host>/home/<username>/docker-compose.yaml
