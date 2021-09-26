@@ -60,7 +60,7 @@ DOCKER_USERNAME=<Docker username>
 USER=<username для подключения к серверу>
 HOST=<IP сервера>
 PASSPHRASE=<пароль для сервера, если он установлен>
-SSH_KEY=<ваш SSH ключ>
+SSH_KEY=<ваш SSH ключ(cat ~/.ssh/id_rsa)>
 
 TG_CHAT_ID=<ID чата, в который придет сообщение>
 TELEGRAM_TOKEN=<токен вашего бота>
