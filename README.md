@@ -1,4 +1,4 @@
-![yamdb_workflow](https://github.com/Viktrols/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?branch=master)
+![yamdb_workflow](https://github.com/Viktrols/yamdb/actions/workflows/yamdb_workflow.yml/badge.svg?branch=master)
 
 # REST API для сервиса YaMDb — базы отзывов
 Проект YaMDb собирает отзывы пользователей на произведения. Произведения делятся на категории (книги, фильмы и тд) Произведению может быть присвоен жанр из списка предустановленных (сказка, драма, артхаус и тд)
@@ -16,7 +16,7 @@
 ## Подготовка и запуск проекта
 ### Склонируйте репозиторий на локальную машину:
 ```
-git clone https://github.com/Viktrols/yamdb_final
+git clone https://github.com/Viktrols/yamdb
 ```
 ### Выполните вход на свой удаленный сервер
 
@@ -82,6 +82,9 @@ docker-compose exec web python3 manage.py loaddata fixtures.json
 ```
 docker-compose exec web python manage.py createsuperuser
 ```
-### Для ревью проект доступен по адресу http://84.252.139.162/api/v1/
-### Документация API http://84.252.139.162/redoc/
+### Проект будет доступен по адресу http://{ваш IP}/api/v1/
+### Документация API http://{ваш IP}/redoc/
 ### Образ на DockerHub https://hub.docker.com/repository/docker/viktrols/yamdb
+
+### Для запуска локально нужно создать файлы .env и pg.env и добавить переменные окружения, запускать также
+
